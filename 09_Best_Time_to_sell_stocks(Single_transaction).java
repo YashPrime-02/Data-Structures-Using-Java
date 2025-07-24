@@ -5,19 +5,18 @@
 class Solution {
     public int maximumProfit(int prices[])
     {
-    if(prices==null || prices.length==0)return 0;
-    
-    int mini=prices[0];
-    int maxProfit=0;
-    int n=prices.length;
-    
-    for(int i=1;i<n;i++)
-    {
-    int cost =prices[i]-mini;
-    maxProfit=Math.max(maxProfit, cost);
-    mini= Math.min(mini,prices[i]);
-        
-    }
-    return maxProfit;
+        if(prices == null || prices.length == 0) return 0;
+
+        int mini = prices[0];       // Minimum price seen so far
+        int maxProfit = 0;          // Maximum profit achievable
+        int n = prices.length;
+
+        for(int i = 1; i < n; i++)
+        {
+            int cost = prices[i] - mini;             // Current potential profit
+            maxProfit = Math.max(maxProfit, cost);   // Update max profit if better
+            mini = Math.min(mini, prices[i]);        // Update min price if lower found
+        }
+        return maxProfit;
     }
 }

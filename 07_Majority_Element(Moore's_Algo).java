@@ -1,62 +1,63 @@
-import java.util.ArrayList;
-import java.util.Collections;
 // We are using Moore's Voting Algorithm two elements version
 // to find all elements that appear more than n/3 times in the array.
 // This algorithm works in O(n) time and O(1) space complexity.
+import java.util.ArrayList;
+import java.util.Collections;
+
 class Solution {
+    /**
+     * Finds all elements in the array that appear more than n/3 times.
+     * Uses the extended Boyer-Moore Voting Algorithm with two candidates.
+     * 
+     * @param arr Input array of integers representing votes/candidates
+     * @return A sorted list of majority elements appearing more than n/3 times
+     */
     public ArrayList<Integer> findMajority(int[] arr) {
-        // We are using Moore's Voting Algorithm two elements version
+        int n = arr.length;
+        ArrayList<Integer> result = new ArrayList<>();
         
-        int n=arr.length;
-        if(n==0) return new ArrayList<>();
-        
-        int pivot1=0,pivot2=0, counter1=0,counter2=0;
-        
-        
-// first check pass
+        // Edge case: empty input
+        if (n == 0) return result;
 
-for(int i:arr)
-{
-if( i==pivot1)
-counter1++;
-else if(i==pivot2)
-counter2++;
+        // Initialize two potential candidates and their counters
+        int candidate1 = 0, candidate2 = 0;
+        int count1 = 0, count2 = 0;
 
-else if(counter1==0)
-{
-pivot1=i;    
-counter1=1;    
-}
-else if(counter2==0)
-{
- pivot2=i;
- counter2=1;
-}
- else
- {
-  counter1--;
-  counter2--;
- }
-}
+        // **1st Pass: Find two potential candidates**
+        // The idea is that there can be at most two elements with frequency > n/3
+        for (int num : arr) {
+            if (num == candidate1) {
+                count1++;
+            } else if (num == candidate2) {
+                count2++;
+            } else if (count1 == 0) {
+                candidate1 = num;
+                count1 = 1;
+            } else if (count2 == 0) {
+                candidate2 = num;
+                count2 = 1;
+            } else {
+                // Reduce both counts if current element matches neither candidate
+                count1--;
+                count2--;
+            }
+        }
 
+        // **2nd Pass: Verify the candidates by counting their occurrences**
+        count1 = 0;
+        count2 = 0;
+        for (int num : arr) {
+            if (num == candidate1) count1++;
+            else if (num == candidate2) count2++;
+        }
 
-//pass 2
+        // If candidates occur more than floor(n/3) times, add to result
+        if (count1 > n / 3) result.add(candidate1);
+        if (count2 > n / 3) result.add(candidate2);
 
+        // Sort result in ascending order, as per problem requirement
+        Collections.sort(result);
 
-int count1=0, count2=0;
-
-for(int i :arr)
-{
- if(i==pivot1) count1++;
- 
- else if(i==pivot2) count2++;
-}
-
-ArrayList<Integer> result =new ArrayList<>();
-if(count1> n/3) result.add(pivot1);
-if(count2>n/3) result.add(pivot2);
-Collections.sort(result);
-return(result);
-}
-    
+        return result;
+    }
 }

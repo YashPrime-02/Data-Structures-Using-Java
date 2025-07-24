@@ -1,37 +1,65 @@
+// 05_Next_Permutation.java
+// This Java program finds the next lexicographical permutation of a given array of integers.
+// It modifies the array in place to represent the next permutation.
+// If the array is already the largest permutation, it rearranges it to the smallest permutation.   
+// The algorithm works in O(n) time complexity, where n is the length of the array.
+// Space complexity is O(1) since it uses a constant amount of extra space.
 class Solution {
+
+    /**
+     * Modifies the input array to its next lexicographically greater permutation.
+     * If the array is in descending order (last permutation), modifies it to the lowest permutation (ascending).
+     * This is done in-place with O(n) time complexity.
+     *
+     * @param arr Input array to permute
+     */
     void nextPermutation(int[] arr) {
-    int i=arr.length-2;
-    while(i>=0 && arr[i]>= arr[i+1])
-    {
-    i--; //finding breaking point
-    }
-    if(i>=0)
-    {
-    int j=arr.length-1;
-    while(j>=0 && arr[j]<= arr[i])
-    j--;
-    swap(arr,i,j);
-    }
-    reverse(arr,i+1);
+        int i = arr.length - 2; // Start from the second last index
+        
+        // Step 1: Find the first index 'i' from the right such that arr[i] < arr[i+1]
+        // This identifies the 'pivot' point where ascending could be applied
+        while (i >= 0 && arr[i] >= arr[i + 1]) {
+            i--; // Move left until a smaller element is found
+        }
+
+        // If such index is found (i >= 0), then there is a next larger permutation possible
+        if (i >= 0) {
+            int j = arr.length - 1;
+            // Step 2: Find the rightmost element larger than arr[i]
+            while (j >= 0 && arr[j] <= arr[i]) {
+                j--; // Move left to find an element strictly greater than arr[i]
+            }
+            // Step 3: Swap the pivot with the found element
+            swap(arr, i, j);
+        }
+
+        // Step 4: Reverse the sub-array after the pivot position to get the next permutation
+        reverse(arr, i + 1);
     }
 
-
-    public void reverse(int[]n, start)
-    {
-    int end=n.length-1;
-    while(start<end)
-    {
-    swap(n,start,end);
-    start++;
-    end--;
+    /**
+     * Reverses the elements in the array from the 'start' index till the end.
+     * @param n The array to reverse in
+     * @param start Starting index to begin reversal
+     */
+    public void reverse(int[] n, int start) {
+        int end = n.length - 1;
+        while (start < end) {
+            swap(n, start, end);
+            start++;
+            end--;
+        }
     }
 
+    /**
+     * Swaps elements at indices i and j in the given array 'n'.
+     * @param n The array where swapping occurs
+     * @param i Index of first element
+     * @param j Index of second element
+     */
+    public void swap(int[] n, int i, int j) {
+        int temp = n[i];
+        n[i] = n[j];
+        n[j] = temp;
     }
-    public void swap(int[]n, int i ,int j)
-    {
-    int temp=n[i];
-    n[i]=n[j];
-    n[j]=temp;
-    }
-
 }
