@@ -15,16 +15,16 @@
  */
 class Solution {
     int maxSubarraySum(int[] arr) {
-        int maxSoFar = Integer.MIN_VALUE; // Tracks the maximum subarray sum found so far
-        int maxEndingHere = 0;            // Tracks the sum of the current subarray
+        int max1 = Integer.MIN_VALUE; // Tracks the maximum subarray sum found so far
+        int sum = 0;            // Tracks the sum of the current subarray
 
         for (int i = 0; i < arr.length; i++) {
-            maxEndingHere = maxEndingHere + arr[i];                // Add current element to current subarray sum
-            if (maxSoFar < maxEndingHere)                          // Update maxSoFar if needed
-                maxSoFar = maxEndingHere;
-            if (maxEndingHere < 0)                                 // Reset current sum if it drops below 0
-                maxEndingHere = 0;
+            sum = sum + arr[i];                // Add current element to current subarray sum
+            if (max1 < sum)                          // Update max1 if needed
+                max1 = sum;
+            if (sum < 0)                                 // Reset current sum if it drops below 0
+                sum = 0;
         }
-        return maxSoFar;
+        return max1;
     }
 }
