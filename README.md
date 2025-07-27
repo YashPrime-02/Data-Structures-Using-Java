@@ -1,87 +1,54 @@
 # Data Structures Using Java
 
-A curated collection of essential data structure and algorithm problems implemented in **Java**. This repository aims to provide clear, well-documented code samples for array manipulation, permutation handling, and advanced algorithmic techniques frequently used in technical interviews and software development.
+A comprehensive repository of essential data structure and algorithm problems implemented in **Java**. This project provides clear, well-documented code samples for array manipulation, permutation handling, and advanced algorithmic techniques commonly encountered in technical interviews and software development.
 
 ## Table of Contents
 
-- [Overview](#overview)  
-- [File Structure](#file-structure)  
-- [Usage](#usage)  
-- [Contributing](#contributing)  
-- [License](#license)  
-- [Contact](#contact)  
+- [Overview](#overview)
+- [File Structure](#file-structure)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
 ## Overview
 
 This repository covers foundational array and algorithm topics, including:
 
-- Second largest element finding  
-- Zero-movement in arrays  
-- Array rotation and reversal  
-- Next permutation logic  
-- Next greater element  
-- Boyer-Moore Majority Voting Algorithm  
+- Finding the second largest element in an array
+- Moving zeroes to the end of an array
+- Reversing arrays
+- Rotating arrays by a given number of positions
+- Generating the next lexicographical permutation
+- Finding the next greater element for each array item
+- Boyer-Moore Majority Voting Algorithm
+- Kadane’s Algorithm (Maximum Subarray Sum)
+- Best Time to Buy and Sell Stock (Multiple Transactions)
+- Best Time to Buy and Sell Stock (Single Transaction)
+- Minimize the Maximum Difference Between Towers
+- Maximum Product Subarray
 
-Each file focuses on a specific problem with stepwise implementation and can serve both as a learning resource and a quick reference.
+## Additional Information
 
+### Cloning the Repository
 
-## File Structure
+To get a local copy up and running, use the following commands:
 
-├── 01_Second_Largest.java # Find the second largest element in an array
-├── 02_Move_Zeroes.java # Move all zeroes to the end of the array
-├── 03_Reverse_an_Array.java # Reverse the given array
-├── 04_Rotate_Array_by_k.java # Rotate array by 'k' positions
-├── 05_Next_Permutation.java # Find the next lexicographical permutation
-├── 06_Next_Greater.java # Find the next greater element for each array item
-├── 07_Majority_Element(Moore's_Algo).java # Moore's Voting Algorithm for majority element
+```bash
+git clone https://github.com/<your-username>/Data-Structures-Using-Java.git
+cd Data-Structures-Using-Java
+```
 
+### License
 
+This project is licensed under the [MIT License](LICENSE). You are free to use, modify, and distribute this code for personal or commercial purposes with proper attribution.
 
-## Usage
+### Contributions
 
-1. **Clone the repository:**
+Contributions, suggestions, and improvements are welcome! Please open an issue or submit a pull request to help make this repository even better.
 
-git clone https://github.com/YOUR-USERNAME/Data-Structures-Using-Java.git
+### Contact
 
+For questions, feedback, or collaboration opportunities, feel free to reach out via [GitHub Issues](https://github.com/<your-username>/Data-Structures-Using-Java/issues).
 
-2. **Compile and Run:**  
-Use any Java IDE (IntelliJ, Eclipse, VSCode) or command-line:
-
-
-3. **Modify and Experiment:**  
-Each file is self-contained. Modify inputs in the `main` method to experiment with various data.
-
-## Contributing
-
-Contributions are welcome! Feel free to:
-
-- Raise issues for bugs or improvements  
-- Submit pull requests for new problems or optimizations  
-
-**To contribute:**  
-
-1. Fork this repository  
-2. Create a feature branch:  
-git checkout -b your-feature
-
-text
-3. Commit your changes:  
-git commit -am 'Add new algorithm'
-
-text
-4. Push to the branch:  
-
-
-5. Open a Pull Request
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
-## Contact
-
-For questions, feedback, or collaboration opportunities:  
-
-**Author:** YashPrime-02  
-
-> *Empowering you to master data structures and algorithms using Java.*
+---

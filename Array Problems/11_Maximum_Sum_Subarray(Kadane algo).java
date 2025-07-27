@@ -20,10 +20,13 @@ class Solution {
 
         for (int i = 0; i < arr.length; i++) {
             sum = sum + arr[i];                // Add current element to current subarray sum
-            if (max1 < sum)                          // Update max1 if needed
+            if (max1 < sum)    
+            {                      // Update max1 if needed
                 max1 = sum;
-            if (sum < 0)                                 // Reset current sum if it drops below 0
+            }
+            if (sum < 0) {
                 sum = 0;
+            } // Reset sum to 0 if it becomes negative
         }
         return max1;
     }
