@@ -11,7 +11,7 @@
 import java.util.*;
 class Solution {
 
-    static int[] computeLPSArray(String pat) {
+    public int[] computeLPSArray(String pat) {
         int n = pat.length();
         int[] lps = new int[n];
 
@@ -52,7 +52,7 @@ class Solution {
 
     // returns minimum character to be added at
     // front to make string palindrome
-    static int minChar(String s) {
+    public int minChar(String s) {
         int n = s.length();
         String rev
             = new StringBuilder(s).reverse().toString();
@@ -69,8 +69,5 @@ class Solution {
         return (n - lps[lps.length - 1]);
     }
 
-    public static void main(String[] args) {
-        String s = "aacecaaaa";
-        System.out.println(minChar(s));
-    }
+   
 }
