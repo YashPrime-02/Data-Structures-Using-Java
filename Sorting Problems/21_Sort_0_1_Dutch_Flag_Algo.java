@@ -22,6 +22,7 @@ class Solution {
         // lo: boundary for 0s
         // mid: current element being checked
         // hi: boundary for 2s
+        
         int lo = 0;
         int hi = n - 1;
         int mid = 0;
