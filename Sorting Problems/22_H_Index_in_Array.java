@@ -7,31 +7,26 @@
 // The solution uses O(n) time and O(n) space for the frequency array.
 
 class Solution {
-    static int hIndex(int[] citations) {
+    public int hIndex(int[] citations) {
         int n = citations.length;
-        int[] freq = new int[n + 1];
-
-        // Count the frequency of citations
+        int[] freq = new int[n+1]; // freq[i] for papers with i citations (freq[n]: count of papers with citations ≥ n)
+        
         for (int i = 0; i < n; i++) {
             if (citations[i] >= n)
-                freq[n] += 1;
+                freq[n]++; // citations ≥ n, count in last bucket
             else
-                freq[citations[i]] += 1;
+                freq[citations[i]]++; // count this exact citation value
         }
-
+        
         int idx = n;
+        int sum = freq[n]; // number of papers with at least n citations
         
-        // Variable to keep track of the count of papers
-        // having at least idx citations
-        int s = freq[n]; 
-        while (s < idx) {
+        // Decrease idx while total papers with ≥ idx citations is still less than idx
+        while (sum < idx) {
             idx--;
-            s += freq[idx];
+            sum += freq[idx]; // add in all papers with exactly idx citations
         }
         
-        // Return the largest index for which the count of 
-        // papers with at least idx citations becomes >= idx
         return idx;
     }
-
 }
