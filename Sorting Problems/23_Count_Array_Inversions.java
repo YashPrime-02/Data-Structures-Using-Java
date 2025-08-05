@@ -8,53 +8,53 @@
 
 class Solution {
 
-    // Main function called by user: counts and returns number of inversions in the given array
+    // Main public function: counts and returns the number of inversions in the given array
     public int inversionCount(int[] arr) {
-        // Create a copy to avoid modifying the original array
-        int[] temp = new int[arr.length];
+        int[] temp = new int[arr.length];           // Helper array for merges
         return mergeSortAndCount(arr, temp, 0, arr.length - 1);
     }
 
-    // Recursive merge sort that counts inversions as it sorts
+    // Recursive mergesort function that sorts the array and returns inversion count
     private int mergeSortAndCount(int[] arr, int[] temp, int left, int right) {
         int invCount = 0;
         if (left < right) {
             int mid = (left + right) / 2;
-            // Recursively count inversions in left half
+            // Count inversions in left half
             invCount += mergeSortAndCount(arr, temp, left, mid);
-            // Recursively count inversions in right half
+            // Count inversions in right half
             invCount += mergeSortAndCount(arr, temp, mid + 1, right);
-            // Merge the two halves and count inversions during merge
+            // Count split inversions during merge step
             invCount += mergeAndCount(arr, temp, left, mid, right);
         }
         return invCount;
     }
 
-    // Merges two sorted subarrays and counts inversions
+    // Merges two sorted subarrays and counts the split inversions
     private int mergeAndCount(int[] arr, int[] temp, int left, int mid, int right) {
-        int i = left;      // Starting index of left subarray
-        int j = mid + 1;   // Starting index of right subarray
-        int k = left;      // Starting index to write to temp array
+        int i = left;       // Pointer for left subarray
+        int j = mid + 1;    // Pointer for right subarray
+        int k = left;       // Pointer for temp array
         int invCount = 0;
 
+        // Traverse both subarrays and merge
         while (i <= mid && j <= right) {
             if (arr[i] <= arr[j]) {
                 temp[k++] = arr[i++]; // No inversion, copy left element
             } else {
-                temp[k++] = arr[j++]; // Inversion found, copy right element
-                invCount += (mid - i + 1); // All remaining elements in left > arr[j-1]
+                temp[k++] = arr[j++]; // Inversion: copy right element
+                invCount += (mid - i + 1); // All remaining left elements are greater than arr[j-1]
             }
         }
 
-        // Copy any remaining elements from the left subarray
+        // Copy the remaining elements of left subarray, if any
         while (i <= mid) {
             temp[k++] = arr[i++];
         }
-        // Copy any remaining elements from the right subarray
+        // Copy the remaining elements of right subarray, if any
         while (j <= right) {
             temp[k++] = arr[j++];
         }
-        // Copy back temp array to original arr
+        // Copy the merged elements back to original array
         for (int p = left; p <= right; p++) {
             arr[p] = temp[p];
         }
