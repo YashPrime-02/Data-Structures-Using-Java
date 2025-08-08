@@ -1,49 +1,55 @@
+/**
+ * Problem: Search in Rotated Sorted Array
+ * ---------------------------------------
+ * Given a sorted array that has been rotated at some unknown pivot,
+ * find the index of a given key. Return -1 if the key doesn't exist.
+ *
+ * Time Complexity: O(log N) where N is the size of the array.
+ *   - We use a modified binary search which reduces search space by half each iteration.
+ *
+ * Space Complexity: O(1)
+ *   - We use constant extra space for variables.
+ *
+ * Explanation:
+ * The array is rotated, so one side (left or right) of the mid element is sorted.
+ * We check which side is sorted, then decide if the key lies within that side.
+ * Accordingly, we move either left or right search boundaries.
+ */
 
 class Solution {
-  
-    static int search(int[] arr, int key) {
-      
-        // Initialize two pointers, lo and hi, at the start
-        // and end of the array
-        int lo = 0, hi = arr.length - 1;
+    int search(int[] arr, int key) {
 
-        while (lo <= hi) {
-            int mid = lo + (hi - lo) / 2;
+        // Initialize search boundaries
+        int low = 0, high = arr.length - 1;
 
-            // If key found, return the index
+        while (low <= high) {
+            // Mid index to split search space, safe from overflow
+            int mid = low + (high - low) / 2;
+
+            // Check if key found at mid
             if (arr[mid] == key)
                 return mid;
 
-            // If Left half is sorted
-            if (arr[mid] >= arr[lo]) {
-              
-                // If the key lies within this sorted half,
-                // move the hi pointer to mid - 1
-                if (key >= arr[lo] && key < arr[mid])
-                    hi = mid - 1;
-              
-                // Otherwise, move the lo pointer to mid + 1
+            // Check if left half is sorted
+            if (arr[mid] >= arr[low]) {
+                // If key lies in left sorted half, narrow high pointer
+                if (key >= arr[low] && key < arr[mid])
+                    high = mid - 1;
                 else
-                    lo = mid + 1;
-            }
-          
-            // If Right half is sorted
-            else {
-              
-                // If the key lies within this sorted half,
-                // move the lo pointer to mid + 1
-                if (key > arr[mid] && key <= arr[hi])
-                    lo = mid + 1;
-              
-                // Otherwise, move the hi pointer to mid - 1
+                    // Otherwise, look in the right half
+                    low = mid + 1;
+            } else {
+                // Right half is sorted
+                // If key lies in right sorted half, narrow low pointer
+                if (key > arr[mid] && key <= arr[high])
+                    low = mid + 1;
                 else
-                    hi = mid - 1;
+                    // Otherwise, search left half
+                    high = mid - 1;
             }
         }
-      
-        // Key not found
-        return -1; 
-    }
 
-    
+        // Key not found after exhausting search space
+        return -1;
+    }
 }
